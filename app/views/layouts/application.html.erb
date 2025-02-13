@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Culinario Support" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <style>
+      root{
+        margin:0;
+        padding:0;
+      }
+      header{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-evenly;
+        padding: 15px 0;
+        
+      }
+      .title{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+      }
+      .title *{
+        margin:0 5px;
+      }
+      .boton{
+        margin:25% 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <span class="title">
+        <img src="https://blog.consumer.com.br/wp-content/uploads/2020/11/culin%C3%A1ria-regional-brasileira.jpg" width="50" height="50"/>
+        <h1>Culinario Support</h1>
+      </span>
+      <p>Quienes somos</p>
+      <p>crea tu pagina</p>
+      <a href="/user/signing"><p>ingresa aqui</p></a>
+      <a href="/user/form"><p>registrate aqui</p></a>
+      <p><%=@profile%></p>
+      <%if @profile!=""%>
+        <%= button_to "Log out", log_path, method: :post, class: "boton"%>
+      <%end%>
+
+    </header>
+    <h2><%=flash[:notice]%><h2>
+    <%= yield %>
+    
+  </body>
+</html>

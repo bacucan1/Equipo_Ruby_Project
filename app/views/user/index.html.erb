@@ -1,0 +1,6 @@
+<h1>Bienvenido a la lista de usuarios</h1>
+
+<%@user_list.each do |usr|%>
+    <p><%= usr.username %></p>
+    <%= link_to "Eli", "/user/" + usr.username.to_s, method: :delete %>
+<%end%>
