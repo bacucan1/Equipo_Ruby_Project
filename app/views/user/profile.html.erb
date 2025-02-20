@@ -1,0 +1,8 @@
+
+<h2>Bienvenido </h2>
+<h4>Nombre de usuario <%=@profile%></h4>
+<h4>Contraseña</h4>
+<%=button_to "Presione aqui para ver su contraseña", pass_path, method: :post %> 
+<h4><%=flash[:con]%></h4>
+
+<%= link_to "Atras", "index"%>

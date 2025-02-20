@@ -57,8 +57,8 @@
       <p>crea tu pagina</p>
       <a href="/user/signing"><p>ingresa aqui</p></a>
       <a href="/user/form"><p>registrate aqui</p></a>
-      <p><%=@profile%></p>
-      <%if @profile!=""%>
+      <a href="/user/profile"><%=@profile%></a>
+      <%if @profile!="" && @profile!=nil%>
         <%= button_to "Log out", log_path, method: :post, class: "boton"%>
       <%end%>
 
