@@ -1,4 +1,4 @@
-# CulinarioSupport
+# Scan&eat
 
 CulinarioSupport es una plataforma diseñada para ayudar a los restaurantes a crear su propia **landing page** con productos y un sistema de pedidos en línea, mejorando así la experiencia del cliente y optimizando el servicio.
 
