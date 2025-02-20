@@ -1,18 +1,26 @@
 class UserController < ApplicationController
-  before_action :profile
+  before_action :active_account
   def index
     @user_list = User.all 
   end
 
-  def form
+  def profile
     
+  end
+
+  def pass
+    dar_contraseña
+    redirect_to profile_path
   end
 
   def signing_form
     if verificacion
       @profile=params[:username]
       redirect_to user_path
+    else
+      redirect_to sign_path, alert: "El usuario o contraseña es incorrecto"
     end
+
   end
 
   def create
@@ -49,15 +57,18 @@ private
     params.permit(:username, :password)
   end
   def verificacion
-    if User.find_by(username: params[:username]) && User.find_by(username: params[:username])
+    if User.find_by(username: params[:username]) && User.find_by(password: params[:password])
       session[:pro]=params[:username]
     end
   end
   def identification
     @user=User.find_by(username: params[:usr])
   end
-  def profile
+  def active_account
     @profile=session[:pro]
+  end
+  def dar_contraseña
+    flash[:con] = User.find_by(username: active_account).password
   end
 
 end
